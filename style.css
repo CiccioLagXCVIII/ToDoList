@@ -1,0 +1,170 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Inter, sans-serif;
+	background-color: #c6ebe3;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 540px;
+}
+
+/* Header WebApp */
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+.panel {
+	padding: 15px;
+	border-radius: 15px;
+	background-color: #875F9A;
+	margin-top: 15px;
+}
+
+h1 {
+	color: #ffffff;
+	font-size: 20px;
+}
+
+/* Empty ToDo List */
+
+.empty-list-message {
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+	padding: 20px;
+}
+
+/* List Todo */
+.listContainer{
+	/* background-color:#ffffff; */
+	padding: 10px;
+	border-radius: 10px;
+
+}
+
+.todo-item {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+	margin: 10px 0;
+	
+}
+
+.toDoContent{
+	flex-grow: 1;
+	padding: 10px;
+}
+
+.buttonCheck {
+	cursor: pointer;
+	border: none;
+	border-radius: 10px;
+	background-color: #875F9A;
+	padding: 10px;
+	align-items: end;
+}
+
+/* input Add ToDo */
+.taskInput{
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
+	padding: 15px;
+	border: none;
+	border-radius: 15px;
+	margin-top: 15px;
+	flex-grow: 1;
+	
+}
+
+.taskInput:focus {
+	outline: none;
+	border: 1px solid #875F9A;
+}
+
+/* Button Add ToDo */
+.buttonContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+button.addNewTask p{
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	margin-right: 15px;
+}
+  
+.addNewTask {
+	cursor: pointer;
+	padding: 15px;
+	border: none;
+	border-radius: 15px;
+	background-color:#875F9A;
+	margin-top: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.cross {
+	cursor: pointer;
+	padding: 10px;
+	border: none;
+	border-radius: 15px;
+	background-color:#875F9A;
+	margin-top: 15px;
+	display: flex;
+	align-items: center;
+	align-content: center;
+}
+/* Button Clear List */
+.clearList{
+	display: flex;
+    align-items: stretch; 
+    justify-content: stretch;
+	padding: 5px;
+	margin-top: 15px;
+}
+
+.clearList button{
+	flex: 1;
+	background-color:#875F9A;
+	border: none;
+	border-radius: 15px;
+	padding: 5px;
+	
+}
+
+.clearList button p{
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	padding: 15px 20px 15px 20px;
+
+}
+
+.contact#instagram{
+	margin-right: 30px;
+}
+.contact#telegram{
+	margin-right: 30px;
+}

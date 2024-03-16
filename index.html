@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Todolist | Coding Week</title>
+
+    <!-- Icon -->
+    <link rel="icon" href="images/icon.png">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+
+  <body onload="listIsEmpty()">
+    <div class="container">
+      <!-- Header -->
+      <header class="panel">
+        <h1>To-Do List</h1>
+        <img src="images/logo.svg" alt="Boolean Logo">
+      </header>
+
+      <!-- Main Section -->
+      <main>
+        <!-- When ToDo list is empty -->
+        <p class="empty-list-message" id="emptyList" style="display: block;">There Are No Tasks</p>
+
+        <!-- When ToDo list is not empty -->
+        <div class="listContainer" id="NotEmptyList">
+          <ul class="todo-list">
+          </ul>
+
+          <!--  Clear List Button -->
+          <div class="clearList">
+            <button id="clearList" onClick="clearList()">
+              <p>Clear List</p>
+            </button>
+          </div>
+        </div>
+
+
+        <!-- Add To Do section -->
+        <div class="buttonContainer">
+          <!-- Input field for adding tasks -->
+          <input type="text" class="taskInput" id="taskInputField" placeholder="Add new task" style="display: none;">
+          <!-- Button to show input field -->
+          <button class="addNewTask" onClick="toggleTaskInput()">
+            <p>New To-Do</p>
+            <img src="images/add.svg" alt="Check Icon">
+          </button>
+          <!-- Button to add task -->
+          <button class="cross" id="onlyPlus" style="display: none;" onClick="addTask()">
+            <img src="images/add.svg" alt="Check Icon">
+          </button>
+        </div>
+      </main>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <a href="https://www.instagram.com/_francesco.98_/"> <img class="contact" id="instagram" src="images/instagram.svg" alt="Instagram Icon"> </a>
+      <a href="https://t.me/CiccioLagXCVIII"> <img class="contact" id="telegram" src="images/telegram.svg" alt="Telegram Icon"> </a>
+      <a href="https://github.com/CiccioLagXCVIII"> <img class="contact" id="github" src="images/github.svg" alt="Git Hub Icon"> </a>
+    </div>
+
+    <script>
+      var toDoList = [];
+      //Show Input
+      function toggleTaskInput(){
+        const taskInput = document.querySelector(".taskInput");
+        const addNewTask = document.querySelector(".addNewTask");
+        const onlyPlus = document.querySelector("#onlyPlus");
+        
+        if (taskInput.style.display === 'none') {
+          // Input is hidden, show it
+          taskInput.style.display = "block";
+          addNewTask.style.display = "none";
+          onlyPlus.style.display = "block";
+        }
+      }
+      //Add Task
+      function addTask(){
+        const taskInput = document.getElementById("taskInputField");
+        
+        if (taskInput.value !== "") {
+          toDoList.push(taskInput.value);
+          // Update visible list of tasks
+          updateToDoList()
+        } else {
+          console.log("Enter Task!");
+        }
+        
+        // Clean Task Input
+        taskInput.value = "";
+      }
+      //Update Task List
+      function updateToDoList(){
+        const todoListContainer = document.querySelector(".todo-list");
+        /**
+          *# Empty the div that contains all the To Dos, otherwise each task will appear twice
+        */
+        todoListContainer.innerHTML = "";
+        
+        // Iterate through the array containing To Dos
+        toDoList.forEach((toDo, index) => {
+          // Each ToDoListContainer is an ul element, so for each element of the array,
+          // create an li element with the appropriate class
+          const listItem = document.createElement("li");
+          listItem.classList.add("todo-item");
+          
+          // Each li element is formed by a div containing the text and
+          // a button to remove it when the task is completed
+          const toDoText = document.createElement("div");
+          toDoText.classList.add("toDoContent");
+          //toDoText.id = `Task ${index}`
+          const checkButton = document.createElement("button");
+          checkButton.classList.add("buttonCheck");
+          checkButton.innerHTML = `<img src="images/check.svg" alt="Check Icon" onClick="removeTask(${index})">`;
+          
+          // Add the ToDo text to the div
+          toDoText.innerHTML = `${toDo}` ; //Id: ${index}
+
+          /**
+          ** Form the visual ToDo for each element in toDoList, where
+          *! listItem is the li element, hence the row
+          *? toDoText is the text inside the row
+          *# checkButton is the button to check off the To Do
+          */
+          
+          // Attach the ToDo text to the row
+          listItem.appendChild(toDoText);
+          // Attach the button to check off the To Do to the row with text
+          listItem.appendChild(checkButton);
+          // Then attach the row to the ul element, since it's a row
+          // in a bulleted list
+          todoListContainer.appendChild(listItem);
+        });
+        listIsEmpty();
+      }
+      //Show Message List Empty
+      function listIsEmpty(){
+        const emptyList = document.getElementById("emptyList");
+        const notEmptyList = document.getElementById("NotEmptyList");
+        if (toDoList.length === 0) {
+          console.log("no tasks");
+          notEmptyList.style.display = 'none';
+          emptyList.style.display = ''; //Message
+        } else {
+          emptyList.style.display = 'none'; //Message
+          notEmptyList.style.display = '';  //List
+        }
+      };
+      //Check Task
+      function removeTask(index) {
+        console.log(`Rimuovo La Task: ${toDoList[index]}`);
+        toDoList.splice(index, 1); //Starting to index posoition, remove one element
+        updateToDoList();
+      }
+      //Clear List
+      function clearList(){
+        var length = toDoList.length
+        toDoList.splice(0, length);
+        updateToDoList();
+        listIsEmpty();
+      }
+    </script>
+
+  </body>
+  
+</html>
